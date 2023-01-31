@@ -1,0 +1,4 @@
+numStudents = 100;
+maxGroupSize = 6;
+timeSlots = 8; %of len = 2hrs
+maxS = 4;
