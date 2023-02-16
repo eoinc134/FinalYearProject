@@ -1,22 +1,17 @@
-input graph
-read graph
-represent graph
+Supervisors can supervise up to 7 students
+Each session consists of 6 students and atleast 2 supervisors
+Up to three sessions can be held per timeslot
+There are 8 timeslots
+Students must be in the same session as their supervisor
+Supervisor availability for each timeslot is defined in a boolean array
 
-L  = CAL ?
-Ls = list of available time periods for lecturers
 
-Algorithm:
+Constraints:
+T/S -> Students <= 6
+T/S -> Supervisors > 2
+Supervisor -> Students <= 7
 
-    main():
-    1) Initialize L with Ls
-    2) Find clique C alap
-    3) for each feasible colouring of C:
-        color()
-
-    color():
-        1) if (leaf reached ¦¦ cut-off criterion) return
-        2) Pick next vertex v
-        3) for each color c in L[v] 
-            - assign c to v and color()
-            - uncolor v and update
+Supervisor only scheduled when available
+Supervisor can only appear in a timeslot once
+Student must be in the same T/S as Supervisor
 
