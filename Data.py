@@ -1,8 +1,6 @@
 import csv
-import json
 import random
 
-import numpy as np
 from pymzn import dzn
 
 ##CONSTANTS##
@@ -17,12 +15,13 @@ MAX_STUDENTS_PER_SUPERVISOR = 7
 MAX_SUPERVISORS_PER_SESSION = 6
 MIN_SUPERVISORS_PER_SESSION = 2
 #############
+CSV_FILE = "./data/availability.csv"
 
 
 class Data:
-    def generate_availability(filename):
+    def generate_availability():
 
-        with open(filename, 'w', newline='') as csvfile:
+        with open(CSV_FILE, 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
             
             # Write X rows with randomly assigned attributes (70% chance of being True)
@@ -30,22 +29,18 @@ class Data:
                 row = [random.choices(['true', 'false'], weights=(0.7, 0.3))[0] for j in range(TIMESLOTS)]
                 writer.writerow(row)
 
-
-    def get_availability():
         # Return availability data 
-        with open("./Datafiles/availability.csv") as file_name:
+        with open(CSV_FILE) as file_name:
             file_read = csv.reader(file_name)
 
             array = list(file_read)
-            return array
+        
+        return array
 
 
-    def generate_data_file():
-        # Generate Supervisor availability csv
-        Data.generate_availability("./DataFiles/availability.csv")
-
+    def generate_data_file(dataFile):
         # Get Supervisor Availability Data
-        availability = Data.get_availability()
+        availability = Data.generate_availability()
 
         # Load all data
         data = {
@@ -64,5 +59,5 @@ class Data:
         }
 
         # Write to .dzn file
-        with open('./models/fyp.dzn', 'w') as outfile:
+        with open(dataFile, 'w') as outfile:
             outfile.write("\n".join(dzn.dict2dzn(data)))

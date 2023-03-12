@@ -2,19 +2,19 @@ from minizinc import Instance, Model, Solver
 from Data import Data
 
 MODEL_FILE = './models/fyp.mzn'
-DATA_FILE = './models/fyp.dzn'
+DATA_FILE = './data/fyp.dzn'
 SOLVER = 'gecode'
 
 
 class FYP():
     def main():
-        fyp = Model("./models/fyp.mzn")
+        fyp = Model(MODEL_FILE)
 
-        Data.generate_data_file()
-        fyp.add_file("./models/fyp.dzn")
+        Data.generate_data_file(DATA_FILE)
+        fyp.add_file(DATA_FILE)
 
         
-        gecode = Solver.lookup("gecode")
+        gecode = Solver.lookup(SOLVER)
         instance = Instance(gecode, fyp)
         result = instance.solve()
 

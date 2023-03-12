@@ -53,17 +53,24 @@ constraint forall(s in Supervisors) (
 );
 
 
-constraint forall(t in Timeslots, s1 in Sessions, s2 in Sessions where s1 != s2) (
+constraint forall(t in Timeslots, s1,s2 in Sessions where s1 != s2) (
     % Supervisor can't be in Concurrent Sessions
     card(session_supervisors[t,s1] intersect session_supervisors[t,s2]) = 0 /\
     % Students can't be in Concurrent Sessions
     card(session_students[t,s1] intersect session_students[t,s2]) = 0
 );
 
-constraint forall(t1 in Timeslots, t2 in Timeslots, s in Sessions where t1 != t2) (
-    % Student only needs to be in 1 Timeslot
-    card(session_students[t1,s] intersect session_students[t2,s]) = 0
+% Students can't be in multiple timeslots
+constraint forall(t1,t2 in Timeslots where t1 != t2, s in Sessions) (
+    card(session_students[t2,s] intersect session_students[t1,s]) = 0
 );
+
+% Students only appear once
+constraint forall(t1, t2 in Timeslots where t1!=t2, s1, s2 in Sessions where s1!=s2) (
+    card(session_students[t1,s1] intersect session_students[t2,s2]) = 0
+);
+
+
 
 % Check Supervisor Availability
 constraint forall(s in Supervisors, t in Timeslots) (
