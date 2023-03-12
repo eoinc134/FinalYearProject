@@ -78,7 +78,12 @@ solve satisfy;
 
 
 % Output
+output ["Timeslot/Session Assignments:\n"];
 output [ "[T\(t)/S\(s)]:" ++ "\n" ++
-        "Supervisors: " ++ show(session_supervisors[t,s]) ++ "\n" ++
-        "Students: " ++ show(session_students[t,s])  ++ "\n\n" 
-        | t in Timeslots, s in Sessions ];
+        "Supervisors -> " ++ show(session_supervisors[t,s]) ++ "\n" ++
+        "Students -> " ++ show(session_students[t,s])  ++ "\n\n"
+        | t in Timeslots, s in Sessions];
+        
+output ["Student Supervisors:\n"];        
+output [ "Student[\(st)] -> " ++ show(student_supervisor[st]) ++ "\n"
+       | st in Students];
