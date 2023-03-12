@@ -33,7 +33,7 @@ class Data:
 
     def get_availability():
         # Return availability data 
-        with open("./Datafiles/availability.csv") as file_name:
+        with open("./data/availability.csv") as file_name:
             file_read = csv.reader(file_name)
 
             array = list(file_read)
@@ -42,7 +42,7 @@ class Data:
 
     def generate_data_file():
         # Generate Supervisor availability csv
-        Data.generate_availability("./DataFiles/availability.csv")
+        Data.generate_availability("./data/availability.csv")
 
         # Get Supervisor Availability Data
         availability = Data.get_availability()

@@ -8,13 +8,13 @@ SOLVER = 'gecode'
 
 class FYP():
     def main():
-        fyp = Model("./models/fyp.mzn")
+        fyp = Model(MODEL_FILE)
 
         Data.generate_data_file()
-        fyp.add_file("./models/fyp.dzn")
+        fyp.add_file(DATA_FILE)
 
         
-        gecode = Solver.lookup("gecode")
+        gecode = Solver.lookup(SOLVER)
         instance = Instance(gecode, fyp)
         result = instance.solve()
 
