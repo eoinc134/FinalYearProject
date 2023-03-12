@@ -1,8 +1,6 @@
 import csv
-import json
 import random
 
-import numpy as np
 from pymzn import dzn
 
 ##CONSTANTS##
