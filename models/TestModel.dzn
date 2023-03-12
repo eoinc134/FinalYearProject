@@ -1,8 +1,0 @@
-% Parameters
-n_students = 127
-n_supervisors = 21
-n_rooms = 3
-n_timeslots = 8
-max_presentations_per_time_slot = 6
-
-% Arrays
