@@ -65,3 +65,21 @@ class Data:
         # Write to .dzn file
         with open(dataFile, 'w') as outfile:
             outfile.write("\n".join(dzn.dict2dzn(data)))
+
+
+
+    def verify_output(result):
+        students = result['session_students']
+
+        numStudents = 0
+        for timeslot in students:
+            for session in timeslot:
+                for student in session:
+                    numStudents += 1
+
+        if(numStudents != NUM_STUDENTS):
+                print("Invalid Output: Students missing from assignment")
+                return False
+        return True
+
+        
