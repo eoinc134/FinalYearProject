@@ -13,7 +13,7 @@ class FYP():
         succesful_runs = 0
         
         for x in range(NUM_RUNS):
-            start_time = time.time()
+            
             ## BUILD MODEL ##
             fyp = Model(MODEL_FILE)
 
@@ -24,18 +24,20 @@ class FYP():
             ## SOLVE INSTANCE ##
             gecode = Solver.lookup(SOLVER)
             instance = Instance(gecode, fyp)
+
+            start_time = time.time()
             result = instance.solve()
+            runtime = round(time.time() - start_time, 3)
 
             ## VERIFY OUTPUT ##
             if(Data.verify_output(result)):
                 #print(result)
-                runtime = round(time.time() - start_time, 3)
                 print(f"Time: {runtime}s")
                 total_time += runtime
                 succesful_runs += 1
         
         print(f"Avg Time: {round(total_time / succesful_runs, 3)}s")
-
+        #print(result)
             
 
     if __name__ == "__main__":

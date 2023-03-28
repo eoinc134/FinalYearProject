@@ -15,6 +15,8 @@ MAX_STUDENTS_PER_SUPERVISOR = 7
 MAX_SUPERVISORS_PER_SESSION = 4
 MIN_SUPERVISORS_PER_SESSION = 2
 
+availability = 0.6
+
 NEW_DATA_FILE = True
 #############
 CSV_FILE = "./data/availability.csv"
@@ -27,7 +29,7 @@ class Data:
             
             # Write X rows with randomly assigned attributes (70% chance of being True)
             for i in range(1, NUM_SUPERVISORS+1):
-                row = [random.choices(['true', 'false'], weights=(0.7, 0.3))[0] for j in range(TIMESLOTS)]
+                row = [random.choices(['true', 'false'], weights=(availability, 1- availability))[0] for j in range(TIMESLOTS)]
                 writer.writerow(row)
 
         
@@ -77,6 +79,7 @@ class Data:
                 for student in session:
                     numStudents += 1
 
+        print("Num Students: ", numStudents)
         if(numStudents != NUM_STUDENTS):
                 print("Invalid Output: Students missing from assignment")
                 return False
