@@ -73,12 +73,14 @@ class Data:
     def verify_output(result):
         students = result['session_students']
 
+        # Add up all students in all sessions
         numStudents = 0
         for timeslot in students:
             for session in timeslot:
                 for student in session:
                     numStudents += 1
 
+        # Verify all students assigned a slot
         print("Num Students: ", numStudents)
         if(numStudents != NUM_STUDENTS):
                 print("Invalid Output: Students missing from assignment")

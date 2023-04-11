@@ -5,7 +5,7 @@ import time
 MODEL_FILE = './models/fyp.mzn'
 DATA_FILE = './data/fyp.dzn'
 SOLVER = 'gecode'
-NUM_RUNS = 5
+NUM_RUNS = 1
 
 class FYP():
     def main():
@@ -17,6 +17,7 @@ class FYP():
             ## BUILD MODEL ##
             fyp = Model(MODEL_FILE)
 
+            # Add data file to models
             Data.generate_data_file(DATA_FILE)
             fyp.add_file(DATA_FILE)
 
@@ -25,13 +26,14 @@ class FYP():
             gecode = Solver.lookup(SOLVER)
             instance = Instance(gecode, fyp)
 
+            # Solve instance and record runtime
             start_time = time.time()
             result = instance.solve()
             runtime = round(time.time() - start_time, 3)
 
             ## VERIFY OUTPUT ##
             if(Data.verify_output(result)):
-                #print(result)
+                print(result)
                 print(f"Time: {runtime}s")
                 total_time += runtime
                 succesful_runs += 1
