@@ -1,5 +1,5 @@
 from minizinc import Instance, Model, Solver
-from Data import Data
+from DataHandling import Data
 import time
 
 MODEL_FILE = './models/fyp.mzn'
