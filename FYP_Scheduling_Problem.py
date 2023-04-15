@@ -73,6 +73,4 @@ def print_result(result, runtime):
 
 if __name__ == "__main__":
     main()
-
-    
-    
+  

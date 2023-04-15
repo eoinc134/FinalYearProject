@@ -90,5 +90,3 @@ class Data:
                 print(f"Invalid Output: {NUM_STUDENTS - num_students} students missing from assignment")
                 return False
         return True
-
-        
