@@ -38,7 +38,7 @@ class FYP():
                 total_time += runtime
                 succesful_runs += 1
         
-        print(f"Avg Time: {round(total_time / succesful_runs, 3)}s")
+        #print(f"Avg Time: {round(total_time / succesful_runs, 3)}s")
         #print(result)
             
 

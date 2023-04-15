@@ -18,8 +18,9 @@ MIN_SUPERVISORS_PER_SESSION = 2
 availability = 0.7
 
 NEW_DATA_FILE = True
-#############
 CSV_FILE = "./data/availability.csv"
+#############
+
 
 
 class Data:
